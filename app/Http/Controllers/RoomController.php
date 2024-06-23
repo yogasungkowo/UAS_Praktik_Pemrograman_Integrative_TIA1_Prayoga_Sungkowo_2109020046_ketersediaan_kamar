@@ -19,13 +19,15 @@ class RoomController extends Controller
             'room_name' => 'required|string',
             'room_number' => 'required|string',
             'level' => 'required|in:VVIP,VIP,Economy',
+            'available' => 'required|integer|min:1',
         ]);
+
 
         $room = Room::create([
             'room_name' => $request->room_name,
             'room_number' => $request->room_number,
             'level' => $request->level,
-            'available' => true
+            'available' => $request->available
         ]);
 
         return response()->json($room);
@@ -38,6 +40,7 @@ class RoomController extends Controller
             'room_name' => 'required|string',
             'room_number' => 'required|string',
             'level' => 'required|in:VVIP,VIP,Economy',
+            'available' => 'required|integer|min:1'
         ]);
 
         $room = Room::findOrFail($id);
@@ -49,7 +52,7 @@ class RoomController extends Controller
     public function destroy($id)
     {
         $room = Room::findOrFail($id);
-        $room->destroy();
+        $room->delete();
 
         return response()->json(['message' => 'Room Hasbeen deleted']);
     }

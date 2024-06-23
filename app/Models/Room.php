@@ -12,7 +12,8 @@ class Room extends Model
     [
         'name',
         'room_number',
-        'level'
+        'level',
+        'available'
     ];
 
     public function patient()

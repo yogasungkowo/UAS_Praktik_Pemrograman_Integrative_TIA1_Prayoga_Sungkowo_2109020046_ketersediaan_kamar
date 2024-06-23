@@ -33,8 +33,9 @@ class PatientController extends Controller
             'name' => $request->name,
             'diagnose' => $request->diagnose
         ]);
-
-        $room->available = false;
+        
+        
+        $room->available -= 1;
         $room->save();
 
         return response()->json($patient);
@@ -46,7 +47,7 @@ class PatientController extends Controller
         $room = $patient->room;
         $patient->delete();
 
-        $room->available = true;
+        $room->available += 1;
         $room->save();
 
         return response()->json(['message' => 'Patient has been Checkout']);

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('room_name');
             $table->string('room_number');
             $table->enum('level', ['VVIP', 'VIP', 'Economy']);
-            $table->boolean('available')->default(true);
+            $table->integer('available');
             $table->timestamps();
         });
     }
